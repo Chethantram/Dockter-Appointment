@@ -3,6 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 import { Toaster } from "sonner";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -15,7 +17,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <ClerkProvider appearance={{
+        baseTheme: dark,
+      }}>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${outfit.className}`}
       >
@@ -37,5 +42,6 @@ export default function RootLayout({ children }) {
           </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
