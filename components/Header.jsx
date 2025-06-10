@@ -11,9 +11,13 @@ import {
 } from "lucide-react";
 import { checkUser } from "@/lib/checkuser";
 import { Badge } from "./ui/badge";
+import { checkAndAllocateCredits } from "@/actions/credits";
 
 const Header = async () => {
   const user = await checkUser();
+  if (user?.role === "PATIENT") {
+    await checkAndAllocateCredits(user);
+  }
   return (
     <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-10 supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
