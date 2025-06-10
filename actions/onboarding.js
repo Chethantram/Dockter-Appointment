@@ -69,7 +69,7 @@ export const setUserRole = async (formData) => {
       revalidatePath("/");
       return {
         success: true,
-        redirect: "/docters/verification",
+        redirect: "/doctor/verification",
       };
     }
   } catch (error) {
